@@ -4,37 +4,47 @@
 @inject AuthenticationStateProvider authStateProvider
 @inject NavigationManager navManager
 
-<PageTitle>My App</PageTitle>
+<MudThemeProvider />
+<MudDialogProvider />
+<MudSnackbarProvider />
 
-<div class="page">
-    <div class="sidebar">
+<MudLayout>
+    <MudAppBar Elevation="1" Dense="true">
+        <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />
+        <MudText>App3</MudText>
+        <MudSpacer />
+        <AuthorizeView>
+            <Authorized>
+                <a @onclick="Logout" href="javascript:void(0)">Logout</a>
+                <MudIconButton Icon="@Icons.Material.Filled.VerifiedUser"></MudIconButton>
+            </Authorized>
+            <NotAuthorized>
+                <MudIconButton Title="Login" Icon="@Icons.Material.Filled.Person" OnClick="@(() => navManager.NavigateTo("/Login"))" />
+            </NotAuthorized>
+        </AuthorizeView>
+        
+    </MudAppBar>
+    <MudDrawer @bind-Open="_drawerOpen" ClipMode="DrawerClipMode.Always" Elevation="2">
         <NavMenu />
-    </div>
-
-    <main>
-        <div class="top-row px-4">
-            <AuthorizeView>
-                <Authorized>
-                    <a @onclick="Logout" href="javascript:void(0)">Logout</a>
-                </Authorized>
-                <NotAuthorized>
-                    <a href="/Login">Login</a>
-                </NotAuthorized>
-            </AuthorizeView>
-        </div>
-
-        <article class="content px-4">
-            @Body
-        </article>
-    </main>
-</div>
+    </MudDrawer>
+    <MudMainContent>
+        <MudContainer MaxWidth="MaxWidth.ExtraExtraLarge">
+        @Body
+        </MudContainer>
+    </MudMainContent>
+</MudLayout>
 
 @code {
+    bool _drawerOpen = false;
 
+    void DrawerToggle()
+    {
+        _drawerOpen = !_drawerOpen;
+    }
     private async Task Logout()
     {
         var customAuthProv = (CustomAuthenticationStateProvider) authStateProvider;
-        customAuthProv.UpdateAuthenticationState(null);
+        await customAuthProv.UpdateAuthenticationState(null);
         navManager.NavigateTo("/", true);
     }
 

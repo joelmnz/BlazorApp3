@@ -17,13 +17,13 @@ Welcome to your new app.
     <Authorized>
         <br />
         <br />
-        <button @onclick="DisplayGreeting" >Show user msg</button>
+        <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="DisplayGreeting" >Show User msg</MudButton>
     </Authorized>
 </AuthorizeView>
 
 @if (!string.IsNullOrEmpty(_userMsg))
 {
-    <div class="alert alert-info">@_userMsg</div>
+    <MudAlert Severity="Severity.Info" >@_userMsg</MudAlert>
 }
 
 @code {

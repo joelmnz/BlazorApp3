@@ -41,7 +41,7 @@ public class CustomAuthenticationStateProvider : AuthenticationStateProvider
 	
 	}
 
-	public async Task UpdateAuthenticationState(UserSession userSession)
+	public async Task UpdateAuthenticationState(UserSession? userSession)
 	{
 		ClaimsPrincipal claimsPrincipal;
 		

@@ -1,34 +1,25 @@
 ﻿@using BlazorApp3.Authenticaion
 
-@inject IJSRuntime js
 @inject AuthenticationStateProvider authStateProvider
 @inject NavigationManager navManager
 
-<div class="row">
-    <div class="col-lg-4 offset-lg-4 pt-4 border">
-        <div class="mb-3 text-center">
-            <h3>Login</h3>
-        </div>
-        <div class="mb-3">
-            <label>User</label>
-            <input @bind="model.UserName" class="form-control" placeholder="email" />
-        </div>
-        <div class="mb-3">
-            <label>Pwd</label>
-            <input @bind="model.Password" class="form-control" placeholder="Password" />
-        </div>
-        <div class="mb-3 d-grid gap-2">
-            <button @onclick="Authenticate" class="btn btn-primary">Login</button>
-        </div>
-    </div>
-</div>
+
+<MudContainer MaxWidth="MaxWidth.Small">
+
+    <MudPaper Elevation="1" Outlined="true">
+        <MudTextField Label="User" @bind-Value="@model.UserName" Variant="Variant.Text" />
+        <MudTextField Label="Password" @bind-Value="@model.Password" Variant="Variant.Text" />
+        <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="@Authenticate">Login</MudButton>
+    </MudPaper>
+
+</MudContainer>
 
 @code {
 
     private class Model
     {
-        public string UserName { get; set; }
-        public string Password { get; set; }
+        public string UserName { get; set; } = "";
+        public string Password { get; set; } = "";
     }
 
     private Model model = new();
