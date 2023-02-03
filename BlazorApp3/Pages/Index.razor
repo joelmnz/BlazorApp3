@@ -2,8 +2,42 @@
 
 <PageTitle>Index</PageTitle>
 
-<h1>Hello, world!</h1>
+<AuthorizeView>
+    <Authorized>
+        <h3>Hi @context.User.Identity.Name</h3>
+    </Authorized>
+    <NotAuthorized>
+        <h3>Please Log In</h3>
+    </NotAuthorized>
+</AuthorizeView>
 
 Welcome to your new app.
 
-<p>Rider Hot-reload? (yeah but with browser refresh)</p>
+<AuthorizeView>
+    <Authorized>
+        <br />
+        <br />
+        <button @onclick="DisplayGreeting" >Show user msg</button>
+    </Authorized>
+</AuthorizeView>
+
+@if (!string.IsNullOrEmpty(_userMsg))
+{
+    <div class="alert alert-info">@_userMsg</div>
+}
+
+@code {
+    
+    [CascadingParameter]
+    private Task<AuthenticationState> authenticationState { get; set; }
+
+    private string _userMsg = "";
+    
+    private async Task DisplayGreeting()
+    {
+        var authState = await authenticationState;
+        var message = $"Hi {authState.User.Identity.Name}";
+        _userMsg = message;
+    }
+
+}

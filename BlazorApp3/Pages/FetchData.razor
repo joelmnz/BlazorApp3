@@ -1,4 +1,6 @@
 ﻿@page "/fetchdata"
+@attribute [Authorize(Roles = "Admin,Test")]
+
 @using BlazorApp3.Data
 @inject WeatherForecastService ForecastService
 
