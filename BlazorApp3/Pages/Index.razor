@@ -1,4 +1,5 @@
 ﻿@page "/"
+@inject ISnackbar Snackbar
 
 <PageTitle>Index</PageTitle>
 
@@ -7,37 +8,40 @@
         <h3>Hi @context.User.Identity.Name</h3>
     </Authorized>
     <NotAuthorized>
-        <h3>Please Log In</h3>
+        <MudContainer>
+            <h3>Please Log In</h3>
+            <LoginComponent />
+        </MudContainer>
     </NotAuthorized>
 </AuthorizeView>
-
-Welcome to your new app.
 
 <AuthorizeView>
     <Authorized>
         <br />
         <br />
-        <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="DisplayGreeting" >Show User msg</MudButton>
+        <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="DisplayGreeting">Show User msg</MudButton>
     </Authorized>
 </AuthorizeView>
 
 @if (!string.IsNullOrEmpty(_userMsg))
 {
-    <MudAlert Severity="Severity.Info" >@_userMsg</MudAlert>
+    <MudAlert Severity="Severity.Info">@_userMsg</MudAlert>
 }
 
 @code {
-    
+
     [CascadingParameter]
     private Task<AuthenticationState> authenticationState { get; set; }
 
     private string _userMsg = "";
-    
+
     private async Task DisplayGreeting()
     {
         var authState = await authenticationState;
         var message = $"Hi {authState.User.Identity.Name}";
         _userMsg = message;
+
+        Snackbar.Add(message, Severity.Info);
     }
 
 }

@@ -15,6 +15,7 @@
         <MudSpacer />
         <AuthorizeView>
             <Authorized>
+                <MudIconButton Icon="@Icons.Material.Filled.Notifications" />
                 <a @onclick="Logout" href="javascript:void(0)">Logout</a>
                 <MudIconButton Icon="@Icons.Material.Filled.VerifiedUser"></MudIconButton>
             </Authorized>
@@ -28,7 +29,7 @@
         <NavMenu />
     </MudDrawer>
     <MudMainContent>
-        <MudContainer MaxWidth="MaxWidth.ExtraExtraLarge">
+        <MudContainer MaxWidth="MaxWidth.ExtraExtraLarge" Class="my-16 pt-16">
         @Body
         </MudContainer>
     </MudMainContent>

@@ -11,6 +11,12 @@ builder.Services.AddAuthenticationCore();
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddMudServices();
+
+// this is in the article : https://learn.microsoft.com/en-us/aspnet/core/blazor/security/?view=aspnetcore-7.0
+builder.Services.AddOptions();
+builder.Services.AddAuthorizationCore(); // adds minimum amount of auth stuff
+// END
+
 builder.Services.AddScoped<ProtectedSessionStorage>();
 builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthenticationStateProvider>();
 builder.Services.AddSingleton<WeatherForecastService>();
