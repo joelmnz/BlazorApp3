@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorApp3", "BlazorApp3\BlazorApp3.csproj", "{2899BEE7-DCEC-4DF8-9C59-C22542D37443}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorApp3.ComponentTests", "test\BlazorApp3.ComponentTests\BlazorApp3.ComponentTests.csproj", "{313B4681-F89D-4B5B-B0B7-524244D31D8C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{2899BEE7-DCEC-4DF8-9C59-C22542D37443}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2899BEE7-DCEC-4DF8-9C59-C22542D37443}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2899BEE7-DCEC-4DF8-9C59-C22542D37443}.Release|Any CPU.Build.0 = Release|Any CPU
+		{313B4681-F89D-4B5B-B0B7-524244D31D8C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{313B4681-F89D-4B5B-B0B7-524244D31D8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{313B4681-F89D-4B5B-B0B7-524244D31D8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{313B4681-F89D-4B5B-B0B7-524244D31D8C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
